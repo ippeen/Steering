@@ -1,0 +1,370 @@
+int Left_Encoder_Pin1 = A0;                           // To measure the Right rotation 
+int Left_Encoder_value1 = 0;                          // Goes to 0 when rotated right
+int Left_Encoder_Pin2 = A1;                           // To measure the Left rotation 
+int Left_Encoder_value2 = 0;                          // Goes to 0 when rotated left
+int Left_Encoder_Previous_value1= 0;                  // To store the previous value to avoid overwriting
+int Left_Encoder_Previous_value2= 0;                  // To store the previous value to avoid overwriting
+int Left_check =1;                                    // Variable for master dafault condition
+
+int Right_Encoder_Pin1 = A2;                           // To measure the Right rotation 
+int Right_Encoder_value1 = 0;                          // Goes to 0 when rotated right
+int Right_Encoder_Pin2 = A3;                           // To measure the Left rotation 
+int Right_Encoder_value2 = 0;                          // Goes to 0 when rotated left
+int Right_Encoder_Previous_value1= 0;                  // To store the previous value to avoid overwriting
+int Right_Encoder_Previous_value2= 0;                  // To store the previous value to avoid overwriting
+int Right_check =1;                                    // Variable for master dafault condition
+
+//---------------------------LEFT - C1 to C5 / Right - C6 to C10 
+
+int CapT1 = 3;                                        // To detect the Touch input of CapT1
+int CapT1_LED = 2;                                    // To control the LED of CapT1  
+int CapT1_value = 0;                                  // To store the value of the touch input of CapT1
+int CapT1_Previousvalue=0;                            // To store the previous value of the touch input of CapT1 to avoid overWriting        
+int CapT2 = 4;                                        // To detect the Touch input of CapT2
+int CapT2_LED = 2;                                    // To control the LED of CapT2
+int CapT2_value = 0;                                  // To store the value of the touch input of CapT2
+int CapT2_Previousvalue=0;                            // To store the previous value of the touch input of CapT1 to avoid overWriting
+int CapT3 = 5;                                        // To detect the Touch input of CapT3
+int CapT3_LED = 2;                                    // To control the LED of CapT3  
+int CapT3_value = 0;                                  // To store the value of the touch input of CapT3
+int CapT3_Previousvalue=0;                            // To store the previous value of the touch input of CapT3 to avoid overWriting    
+int CapT4 = 6;                                        // To detect the Touch input of CapT4
+int CapT4_LED = 2;                                    // To control the LED of CapT4  
+int CapT4_value = 0;                                  // To store the value of the touch input of CapT4
+int CapT4_Previousvalue=0;                            // To store the previous value of the touch input of CapT4 to avoid overWriting    
+int CapT5 = 7;                                        // To detect the Touch input of CapT5
+int CapT5_LED = 2;                                    // To control the LED of CapT5  
+int CapT5_value = 0;                                  // To store the value of the touch input of CapT5
+int CapT5_Previousvalue=0;                            // To store the previous value of the touch input of CapT5 to avoid overWriting    
+
+
+int CapT6 = 8;                                        // To detect the Touch input of CapT6
+int CapT6_LED = 2;                                    // To control the LED of CapT6  
+int CapT6_value = 0;                                  // To store the value of the touch input of CapT6
+int CapT6_Previousvalue=0;                            // To store the previous value of the touch input of CapT6 to avoid overWriting        
+int CapT7 = 9;                                        // To detect the Touch input of CapT7
+int CapT7_LED = 2;                                    // To control the LED of CapT7
+int CapT7_value = 0;                                  // To store the value of the touch input of CapT7
+int CapT7_Previousvalue=0;                            // To store the previous value of the touch input of CapT7 to avoid overWriting
+int CapT8 = 10;                                       // To detect the Touch input of CapT8
+int CapT8_LED = 2;                                    // To control the LED of CapT8  
+int CapT8_value = 0;                                  // To store the value of the touch input of CapT8
+int CapT8_Previousvalue=0;                            // To store the previous value of the touch input of CapT8 to avoid overWriting    
+int CapT9 = 11;                                       // To detect the Touch input of CapT9
+int CapT9_LED = 2;                                    // To control the LED of CapT9  
+int CapT9_value = 0;                                  // To store the value of the touch input of CapT9
+int CapT9_Previousvalue=0;                            // To store the previous value of the touch input of CapT9 to avoid overWriting    
+int CapT10 = 12;                                      // To detect the Touch input of CapT10
+int CapT10_LED = 2;                                   // To control the LED of CapT10  
+int CapT10_value = 0;                                 // To store the value of the touch input of CapT10
+int CapT10_Previousvalue=0;                           // To store the previous value of the touch input of CapT10 to avoid overWriting   
+
+
+
+void setup()
+{
+  Serial.begin(9600);                                 // Initialising Serial communication
+  pinMode(CapT1_LED, OUTPUT);                         // Intitialising LED output
+  pinMode(CapT1, INPUT);                              // Intitialising Touch input
+  pinMode(CapT2_LED, OUTPUT);                         // Intitialising LED output 
+  pinMode(CapT2, INPUT);                              // Intitialising Touch input 
+  pinMode(CapT3_LED, OUTPUT);                         // Intitialising LED output
+  pinMode(CapT3, INPUT);                              // Intitialising Touch input
+  pinMode(CapT4_LED, OUTPUT);                         // Intitialising LED output 
+  pinMode(CapT4, INPUT);                              // Intitialising Touch input
+  pinMode(CapT5_LED, OUTPUT);                         // Intitialising LED output
+  pinMode(CapT5, INPUT);                              // Intitialising Touch input
+
+  
+  pinMode(CapT6_LED, OUTPUT);                         // Intitialising LED output
+  pinMode(CapT6, INPUT);                              // Intitialising Touch input
+  pinMode(CapT7_LED, OUTPUT);                         // Intitialising LED output 
+  pinMode(CapT7, INPUT);                              // Intitialising Touch input 
+  pinMode(CapT8_LED, OUTPUT);                         // Intitialising LED output
+  pinMode(CapT8, INPUT);                              // Intitialising Touch input
+  pinMode(CapT9_LED, OUTPUT);                         // Intitialising LED output 
+  pinMode(CapT9, INPUT);                              // Intitialising Touch input
+  pinMode(CapT10_LED, OUTPUT);                        // Intitialising LED output
+  pinMode(CapT10, INPUT);                             // Intitialising Touch input
+  
+//-----------------------------
+
+ pinMode(Left_Encoder_Pin1, INPUT);                   // Initialising Encoder Right rotation Input   
+ pinMode(Left_Encoder_Pin2, INPUT);                   // Initialising Encoder Left rotation Input
+
+ pinMode(Right_Encoder_Pin1, INPUT);                  // Initialising Encoder Right rotation Input   
+ pinMode(Right_Encoder_Pin2, INPUT);                  // Initialising Encoder Left rotation Input
+
+ pinMode(A2, OUTPUT);                                 // Optional LED Output
+ pinMode(A3, OUTPUT);                                 // Optional LED Output
+
+}
+
+void loop()
+{  
+ CapT1_value = digitalRead(CapT1);                    // Reading the CapT1
+ CapT2_value = digitalRead(CapT2);                    // Reading the CapT2
+ CapT3_value = digitalRead(CapT3);                    // Reading the CapT3
+ CapT4_value = digitalRead(CapT4);                    // Reading the CapT4
+ CapT5_value = digitalRead(CapT5);                    // Reading the CapT5
+
+ CapT6_value = digitalRead(CapT6);                    // Reading the CapT6
+ CapT7_value = digitalRead(CapT7);                    // Reading the CapT7
+ CapT8_value = digitalRead(CapT8);                    // Reading the CapT8
+ CapT9_value = digitalRead(CapT9);                    // Reading the CapT9
+ CapT10_value = digitalRead(CapT10);                  // Reading the CapT10
+ 
+ if (CapT1_value ==0)                                 // If it is not touched , maintaining the LED at half state
+ {
+ analogWrite(CapT1_LED,255);
+ analogWrite(CapT1_LED,0);
+ CapT1_Previousvalue=CapT1_value;                     // Overwriting the previous value variable with the new value
+ } 
+ 
+ if (CapT2_value ==0)                                 // If it is not touched , maintaining the LED at half state
+ {
+ analogWrite(CapT2_LED,255); 
+ analogWrite(CapT2_LED,0);
+ CapT2_Previousvalue=CapT2_value;                     // Overwriting the previous value variable with the new value
+ }
+
+ if (CapT3_value ==0)                                 // If it is not touched , maintaining the LED at half state
+ {
+ analogWrite(CapT3_LED,255); 
+ analogWrite(CapT3_LED,0);
+ CapT3_Previousvalue=CapT3_value;                     // Overwriting the previous value variable with the new value
+ }
+
+ if (CapT4_value ==0)                                 // If it is not touched , maintaining the LED at half state
+ {
+ analogWrite(CapT4_LED,255); 
+ analogWrite(CapT4_LED,0);
+ CapT4_Previousvalue=CapT4_value;                     // Overwriting the previous value variable with the new value
+ }
+
+ if (CapT5_value ==0)                                 // If it is not touched , maintaining the LED at half state
+ {
+ analogWrite(CapT5_LED,255); 
+ analogWrite(CapT5_LED,0);
+ CapT5_Previousvalue=CapT5_value;                     // Overwriting the previous value variable with the new value
+ }
+
+ if (CapT6_value ==0)                                 // If it is not touched , maintaining the LED at half state
+ {
+ analogWrite(CapT6_LED,255);
+ analogWrite(CapT6_LED,0);
+ CapT6_Previousvalue=CapT6_value;                     // Overwriting the previous value variable with the new value
+ } 
+ 
+ if (CapT7_value ==0)                                 // If it is not touched , maintaining the LED at half state
+ {
+ analogWrite(CapT7_LED,255); 
+ analogWrite(CapT7_LED,0);
+ CapT7_Previousvalue=CapT7_value;                     // Overwriting the previous value variable with the new value
+ }
+
+ if (CapT8_value ==0)                                 // If it is not touched , maintaining the LED at half state
+ {
+ analogWrite(CapT8_LED,255); 
+ analogWrite(CapT8_LED,0);
+ CapT8_Previousvalue=CapT8_value;                     // Overwriting the previous value variable with the new value
+ }
+
+ if (CapT4_value ==0)                                 // If it is not touched , maintaining the LED at half state9
+ {
+ analogWrite(CapT9_LED,255); 
+ analogWrite(CapT9_LED,0);
+ CapT9_Previousvalue=CapT9_value;                     // Overwriting the previous value variable with the new value
+ }
+
+ if (CapT10_value ==0)                                // If it is not touched , maintaining the LED at half state
+ {
+ analogWrite(CapT10_LED,255); 
+ analogWrite(CapT10_LED,0);
+ CapT10_Previousvalue=CapT10_value;                   // Overwriting the previous value variable with the new value
+ }
+
+//-------------------------------------------
+ 
+ if (CapT1_value ==1)                                 // If touched the LED gets Bright 
+ {
+ analogWrite(CapT1_LED,255);
+ if(CapT1_Previousvalue==0)                           // Delivering output only once at a time, when it is touched 
+  {
+  Serial.println("STR_CapT1");                        // Serial output to the unity
+  }
+ CapT1_Previousvalue=CapT1_value;                     // Overwriting the previous value variable with the new value
+ }
+ 
+ if (CapT2_value ==1)                                 // If touched the LED gets Bright
+ {
+ analogWrite(CapT2_LED,255);
+ if(CapT2_Previousvalue==0)                           // Delivering output only once at a time, when it is touched 
+  {
+  Serial.println("STR_CapT2");                        // Serial output to the unity
+  }
+ CapT2_Previousvalue=CapT2_value;                     // Overwriting the previous value variable with the new value
+ }
+
+ if (CapT3_value ==1)                                 // If touched the LED gets Bright
+ {
+ analogWrite(CapT3_LED,255);
+ if(CapT3_Previousvalue==0)                           // Delivering output only once at a time, when it is touched 
+  {
+  Serial.println("STR_CapT3");                        // Serial output to the unity
+  }
+ CapT3_Previousvalue=CapT3_value;                     // Overwriting the previous value variable with the new value
+ }
+
+ if (CapT4_value ==1)                                 // If touched the LED gets Bright
+ {
+ analogWrite(CapT4_LED,255);
+ if(CapT4_Previousvalue==0)                           // Delivering output only once at a time, when it is touched 
+  {
+  Serial.println("STR_CapT4");                        // Serial output to the unity
+  }
+ CapT4_Previousvalue=CapT4_value;                     // Overwriting the previous value variable with the new value
+ }
+
+ if (CapT5_value ==1)                                 // If touched the LED gets Bright
+ {
+ analogWrite(CapT5_LED,255);
+ if(CapT5_Previousvalue==0)                           // Delivering output only once at a time, when it is touched 
+  {
+  Serial.println("STR_CapT5");                        // Serial output to the unity
+  }
+ CapT5_Previousvalue=CapT5_value;                     // Overwriting the previous value variable with the new value
+ }
+
+
+
+
+ if (CapT6_value ==1)                                 // If touched the LED gets Bright 
+ {
+ analogWrite(CapT6_LED,255);
+ if(CapT6_Previousvalue==0)                           // Delivering output only once at a time, when it is touched 
+  {
+  Serial.println("STR_CapT6");                        // Serial output to the unity
+  }
+ CapT6_Previousvalue=CapT6_value;                     // Overwriting the previous value variable with the new value
+ }
+ 
+ if (CapT7_value ==1)                                 // If touched the LED gets Bright
+ {
+ analogWrite(CapT7_LED,255);
+ if(CapT7_Previousvalue==0)                           // Delivering output only once at a time, when it is touched 
+  {
+  Serial.println("STR_CapT7");                        // Serial output to the unity
+  }
+ CapT7_Previousvalue=CapT7_value;                     // Overwriting the previous value variable with the new value
+ }
+ 
+ if (CapT8_value ==1)                                 // If touched the LED gets Bright
+ {
+ analogWrite(CapT8_LED,255);
+ if(CapT8_Previousvalue==0)                           // Delivering output only once at a time, when it is touched 
+  {
+  Serial.println("STR_CapT8");                        // Serial output to the unity
+  }
+ CapT8_Previousvalue=CapT8_value;                     // Overwriting the previous value variable with the new value
+ }
+
+ if (CapT9_value ==1)                                 // If touched the LED gets Bright
+ {
+ analogWrite(CapT9_LED,255);
+ if(CapT9_Previousvalue==0)                           // Delivering output only once at a time, when it is touched 
+  {
+  Serial.println("STR_CapT9");                        // Serial output to the unity
+  }
+ CapT9_Previousvalue=CapT9_value;                     // Overwriting the previous value variable with the new value
+ }
+
+ if (CapT10_value ==1)                                // If touched the LED gets Bright
+ {
+ analogWrite(CapT10_LED,255);
+ if(CapT10_Previousvalue==0)                           // Delivering output only once at a time, when it is touched 
+  {
+  Serial.println("STR_CapT10");                        // Serial output to the unity
+  }
+ CapT10_Previousvalue=CapT10_value;                    // Overwriting the previous value variable with the new value
+ }
+
+
+//-------------------
+
+Left_Encoder_value1 = analogRead(Left_Encoder_Pin1);                 // Reading the Left Encoder's Right rotation pin
+Left_Encoder_value2 = analogRead(Left_Encoder_Pin2);                 // Reading the Left Encoder's Left rotation pin
+
+if (Left_check ==1)                                                       // if the default variable is true then encoder is in the default state (Non-rotating)
+ {
+  Left_Encoder_value1 = analogRead(Left_Encoder_Pin1);               // Reading the Left Encoder's Right rotation pin
+  Left_Encoder_value2 = analogRead(Left_Encoder_Pin2);               // Reading the Left Encoder's Left rotation pin
+  
+  if ((Left_Encoder_value1 ==0) && (Left_Encoder_Previous_value1>0)) // entering right rotating state Making sure to avoid the multiple inputs at the same time
+  {
+  Serial.println("STR_Left_Encoder_UP");                             // Serial communication output to unity
+//  digitalWrite( A2, 1);
+//  delay (70);
+//  digitalWrite( A2, 0);
+  Left_Encoder_Previous_value1 = Left_Encoder_value1;                // Overwriting the previous value variable with the new value      
+  Left_check =0;                                                          // Pushing it out of the Rotating state
+  }
+  
+  Left_Encoder_Previous_value1 = Left_Encoder_value1;                // Overwriting the previous value variable with the new value even if does not enter rotating state
+  
+  if ((Left_Encoder_value2 ==0) && (Left_Encoder_Previous_value2>0)) // entering left rotating state Making sure to avoid the multiple inputs at the same time 
+  {
+  Serial.println("STR_Left_Encoder_DOWN");                           // Serial communication output to unity
+//  digitalWrite( A3, 1);
+//  delay (70);
+//  digitalWrite( A3, 0);
+  Left_Encoder_Previous_value2=Left_Encoder_value2;                  // Overwriting the previous value variable with the new value
+  Left_check=0;                                                           // Pushing it out of the Rotating state
+  }
+  Left_Encoder_Previous_value2=Left_Encoder_value2;                  // Overwriting the previous value variable with the new value even if does not enter rotating state
+ }
+
+ if ((Left_Encoder_value1>1)&& (Left_Encoder_value2>1))              // If in the non-rotating state, default variable is true;
+ {
+  Left_check = 1;
+ }
+
+//------------------------------
+
+Right_Encoder_value1 = analogRead(Right_Encoder_Pin1);                 // Reading the Right Encoder's Right rotation pin
+Right_Encoder_value2 = analogRead(Right_Encoder_Pin2);                 // Reading the Right Encoder's Left rotation pin
+
+if (Right_check ==1)                                                   // if the default variable is true then encoder is in the default state (Non-rotating)
+ {
+  Right_Encoder_value1 = analogRead(Right_Encoder_Pin1);               // Reading the Right Encoder's Right rotation pin
+  Right_Encoder_value2 = analogRead(Right_Encoder_Pin2);               // Reading the Right Encoder's Left rotation pin
+  
+  if ((Right_Encoder_value1 ==0) && (Right_Encoder_Previous_value1>0)) // entering right rotating state Making sure to avoid the multiple inputs at the same time
+  {
+  Serial.println("STR_Right_Encoder_UP");                             // Serial communication output to unity
+//  digitalWrite( A2, 1);
+//  delay (70);
+//  digitalWrite( A2, 0);
+  Right_Encoder_Previous_value1 = Right_Encoder_value1;                // Overwriting the previous value variable with the new value      
+  Right_check =0;                                                      // Pushing it out of the Rotating state
+  }
+  
+  Right_Encoder_Previous_value1 = Right_Encoder_value1;                // Overwriting the previous value variable with the new value even if does not enter rotating state
+  
+  if ((Right_Encoder_value2 ==0) && (Right_Encoder_Previous_value2>0)) // entering left rotating state Making sure to avoid the multiple inputs at the same time 
+  {
+  Serial.println("STR_Right_Encoder_DOWN");                           // Serial communication output to unity
+//  digitalWrite( A3, 1);
+//  delay (70);
+//  digitalWrite( A3, 0);
+  Right_Encoder_Previous_value2=Right_Encoder_value2;                  // Overwriting the previous value variable with the new value
+  Right_check=0;                                                       // Pushing it out of the Rotating state
+  }
+  Right_Encoder_Previous_value2=Right_Encoder_value2;                  // Overwriting the previous value variable with the new value even if does not enter rotating state
+ }
+
+ if ((Right_Encoder_value1>1)&& (Right_Encoder_value2>1))              // If in the non-rotating state, default variable is true;
+ {
+  Right_check = 1;
+ }
+}
